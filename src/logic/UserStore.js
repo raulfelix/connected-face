@@ -1,12 +1,20 @@
+import { setStorage, clearStorage, getUser, userExists } from './Session';
+
 class UserStore {
   id;
   type;
   username;
   profile;
 
-  constructor(api) {
-    this.id = null;
-    this.api = api;
+  constructor(root, api) {
+    if (userExists()) {
+      const {id, type, username } = getUser();
+      this.id = id
+      this.type = type
+      this.username = username
+    }
+    this.api = api
+    console.log(this)
   }
 
   get profileRoute() {
@@ -25,11 +33,23 @@ class UserStore {
 
   async login(email, password) {
     try {
-      const response = await this.api.login(email, password);
+      const response = await this.api.login(email, password)
       this.setUserDetails(response);
+      setStorage(response)
       return true;
     } catch (e) {
       console.error('couldnt login')
+    }
+    return false;
+  }
+
+  async logout() {
+    try {
+      await this.api.logout(this.id)
+      clearStorage();
+      return true;
+    } catch (e) {
+      console.error('couldnt logout')
     }
     return false;
   }
@@ -49,6 +69,7 @@ class UserStore {
     try {
       profile.id = this.profile.id;
       const ok = await this.api.updateProfile(profile);
+      return ok;
     } catch (e) {
       console.error(e)
     }

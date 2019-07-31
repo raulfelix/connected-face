@@ -1,20 +1,24 @@
 import React, {useState} from 'react';
+import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import { useStore } from '../AppState';
 
+const Title = styled.h1`
+  font-size: 18px;
+  font-weight: normal;
+`;
+
 function SignUp({ history }) {
-  const [username, setUsername] = useState('');
+  const path = history.location.pathname
+  const type = path.includes('edu') ? 'edu' : 'pro';
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [type, setType] = useState('edu');
   const { user } = useStore();
 
   return (
     <>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input type="text" name="username" id="username" value={username} onChange={e => setUsername(e.target.value)} />
-      </div>
+      { type === 'edu' && <Title>Sign up using your education email</Title>}
+      { type === 'pro' && <Title>Sign up and fill in your profile</Title>}
       <div>
         <label htmlFor="email">email</label>
         <input type="text" name="email" id="email" value={email} onChange={e => setEmail(e.target.value)}/>
@@ -23,13 +27,8 @@ function SignUp({ history }) {
         <label htmlFor="password">Password</label>
         <input type="password" name="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
       </div>
-      <div>
-        <h4>Indicate what you are here for</h4>
-        <label>I am an educator <input type="radio" value="edu" name="type" onChange={e => setType('edu')} /></label>
-        <label>I am a professional <input type="radio" value="pro" name="type" onChange={e => setType('pro')}/></label>
-      </div>
       <button type="button" onClick={async () => {
-        const ok = await user.signup(username, email, password, type);
+        const ok = await user.signup(email, email, password, type);
         if (ok) history.push(user.profileRoute);
       }}>Sign up</button>
     </>

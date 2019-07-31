@@ -17,6 +17,10 @@ class Account {
     });
   }
 
+  logout(id) {
+    return post('/logout', { id });
+  }
+
   profile(id) {
     return get(`/user/${id}/profile`)
   }

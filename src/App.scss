@@ -1,4 +1,86 @@
+h1, h2, p {
+  font-family: Courier, monospace;
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+p {
+  font-size: 16px;
+}
+
 .header {
   height: 50px;
   border-bottom: 1px solid #dddddd;
+}
+
+.form {
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 60px;
+}
+
+.control {
+  margin-bottom: 10px;
+  position: relative;
+
+  .control_label {
+    margin-bottom: 3px;
+  }
+  .control_field {
+    position: relative;
+  }
+  label {
+    font-family: Courier, monospace;
+  }
+
+  input, textarea {
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    height: 38px;
+    padding: 0 10px;
+    width: 100%;
+  }
+}
+
+.react-autosuggest__container {
+  position: relative;
+  background-color: #fff;
+}
+.react-autosuggest__suggestions-container {
+  background-color: #fff;
+  box-shadow: 0 0.25rem 5px 0 rgba(0, 0, 0, 0.2);
+  left: 0;
+  right: 0;
+  top: 43px;
+  max-height: 190px;
+  overflow: auto;
+  position: absolute;
+  z-index: 1;
+}
+
+.react-autosuggest__suggestions-container,
+.react-autosuggest__suggestion,
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+}
+
+.react-autosuggest__suggestions-list {
+  list-style: none;
+}
+
+.react-autosuggest__suggestion {
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 10px;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: rgba(8, 132, 252, 0.2);
 }

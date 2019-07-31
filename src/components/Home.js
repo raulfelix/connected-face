@@ -4,9 +4,15 @@ import { Link, withRouter } from 'react-router-dom';
 function Home({ history }) {
   return (
     <>
-      <h1>Velcome to connect-ed!</h1>
-      <p>You should <Link to="/signup">Sign up</Link></p>
-      <p>You could also <Link to="/login">login instead</Link></p>
+      <p><Link to="/login">Login</Link></p>
+      <div>
+        <h3>Teacher/School</h3>
+        <p><Link to="/register/education">Sign up</Link> as a teacher or school</p>
+      </div>
+      <div>
+        <h3>Partner</h3>
+        <p><Link to="/register/partner">Sign up</Link> as a partner</p>
+      </div>
     </>
   );
 }
