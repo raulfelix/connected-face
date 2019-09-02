@@ -1,7 +1,4 @@
-h1, h2, p, .field__error {
-  font-family: Courier, monospace;
-  font-size: 24px;
-}
+@import 'grid';
 
 h2 {
   font-size: 16px;
@@ -99,25 +96,21 @@ p {
   color: blue;
 }
 
-
-
 @font-face {
   font-family: 'interbold';
   src: url('./fonts/inter-bold-webfont.woff2') format('woff2'),
        url('./fonts/inter-bold-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-
 }
 
-// @font-face {
-//   font-family: 'intermedium';
-//   src: url('./fonts/inter-medium-webfont.woff2') format('woff2'),
-//        url('./fonts/inter-medium-webfont.woff') format('woff');
-//   font-weight: normal;
-//   font-style: normal;
-
-// }
+@font-face {
+  font-family: 'intermedium';
+  src: url('./fonts/inter-medium-webfont.woff2') format('woff2'),
+       url('./fonts/inter-medium-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 @font-face {
   font-family: 'interregular';
@@ -136,3 +129,62 @@ p {
 //   font-style: normal;
 
 // }
+
+  .fat1, .fat2,
+  .second,
+  .third,
+  .fourth,
+  .fifth,
+  .sixth,
+  .seventh,
+  .eighth,
+  .ninth,
+  .tenth {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: dash 5s 1.5s linear forwards;
+  }
+
+  .fat1 {
+    animation-delay: 3s;
+  }
+  .fat2 {
+    animation-delay: 2s;
+  }
+  .sixth {
+    animation-delay: 3s;
+  }
+
+  .seventh {
+    animation-delay: 2s;
+  }
+  
+  .tenth,
+  .third {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+  }
+
+  .ninth {
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    animation: dash 8s 1.5s linear forwards;
+  }
+
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+
+.mb-3 {
+  margin-bottom: 1.5rem !important;
+}

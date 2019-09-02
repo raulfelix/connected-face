@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1432px" height="474px" viewBox="0 0 1432 474" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+    
+    </style>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HOME" transform="translate(-8.000000, 0.000000)">
+            <g id="NETWORK" transform="translate(9.000000, 0.000000)">
+                <path class="fat1" d="M783.5,116.5 L102.5,116.5" id="Line-21" stroke="#FFDFFE" stroke-width="10" stroke-linecap="round"></path>
+                <path class="fat2" d="M1049,10 C1049,194 1049,286 1049,286 C1049,286 919,286 659,286" id="Line-21" stroke="#FFDFFE" stroke-width="10" stroke-linecap="round"></path>
+                <path class="fourth" d="M1079,0.309794989 L1079,271.690205" id="Line-4" stroke="#FD5EF8" stroke-linecap="square"></path>
+                <polyline class="seventh" id="Line-4" stroke="#FD5EF8" stroke-linecap="square" points="1091 0.309794989 1091 271.690205 1229.86719 381.613281"></polyline>
+                <polyline class="second" id="Line-4" stroke="#FD5EF8" stroke-linecap="square" points="1132.75 0.309121622 1132.5 242.5 1201.03906 167 1437 167 1443.88332 230.299569"></polyline>
+                <path class="sixth" d="M1070.75,0.309794989 L1070.5,473.5" id="Line-4" stroke="#FD5EF8" stroke-linecap="square"></path>
+                <polyline class="tenth" id="Line-4" stroke="#FD5EF8" stroke-linecap="square" points="1049 0.309794989 1049 271.690205 434 272.5 390 322.5"></polyline>
+                <polyline class="fourth" id="Line-4" stroke="#FD5EF8" stroke-linecap="square" points="1113 0.309121622 1113 182.690878 927.5 182.5 927.5 250.5"></polyline>
+                <polyline class="fifth" id="Line-6" stroke="#FD5EF8" stroke-linecap="square" points="1102.01465 0.5 1100.5 207.5 762.5 207.5 804.008789 156.220703"></polyline>
+                <polyline class="ninth" id="Line-19" stroke="#FD5EF8" stroke-linecap="square" points="1041 0.309121622 1041 285.5 410.5 285.5 311.5 389.5 73.5 389.5"></polyline>
+                <polyline class="third" id="Line-12" stroke="#FD5EF8" stroke-linecap="square" stroke-linejoin="round" points="1120.75 0 1120.5 195.5 748.5 195.5 811.5 116.5 73.5 116.5 0 41.5"></polyline>
+                <path class="Oval11" d="M73.5,127 C79.2989899,127 84,122.29899 84,116.5 C84,110.70101 79.2989899,106 73.5,106 C70.5813506,106 67.9408349,107.190832 66.0378164,109.113131 C64.1597761,111.010199 63,113.619659 63,116.5 C63,122.29899 67.7010101,127 73.5,127 Z" id="Oval" stroke="#FD5EF8" fill="#FFFFFF"></path>
+                <circle id="Oval" fill="#0053DC" cx="73.5" cy="116.5" r="5.5"></circle>
+                <circle id="Oval" fill="#0053DC" cx="748.5" cy="195.5" r="5.5"></circle>
+                <circle id="Oval" fill="#0053DC" cx="1229.5" cy="381.5" r="5.5"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -7,9 +7,12 @@ import LazyRoute from './LazyRoute';
 import Home from './components/Home';
 import SignUp from './components/SignUp';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import NewProject from './components/projects/NewProject';
+import Authed from './components/Authed';
 
 const Login = React.lazy(() => import('./components/Login'));
-const Profile = React.lazy(() => import('./components/Profile'));
+const Profile = React.lazy(() => import('./components/profile/Profile'));
 
 const AppRoutes = () => (
   <Router>
@@ -17,8 +20,10 @@ const AppRoutes = () => (
       <Header />
       <Switch>
         <Route strict exact path="/" component={Home} />
+        <Route strict exact path="/login/google" component={Authed} />
         <Route strict exact path="/register/education" component={SignUp} />
         <Route strict exact path="/register/partner" component={SignUp} />
+        <Route strict exact path="/project/new" component={NewProject} />
         <LazyRoute strict exact path="/login" component={Login} />
         <PrivateRoute strict exact path="/user/profile" component={Profile} />
         {/* <Route
@@ -29,6 +34,7 @@ const AppRoutes = () => (
           )}
         /> */}
       </Switch>
+      <Footer />
     </main>
   </Router>
 );
