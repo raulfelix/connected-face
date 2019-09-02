@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { withRouter, Link } from 'react-router-dom';
 import { userExists } from '../logic/Session';
 import { useStore } from '../AppState';
-import { fontRegular, fontBold } from './styled/Fonts';
+import { fontRegular, fontBold, focus } from './styled/Fonts';
 import Colours from './styled/Colours';
+import { Mobile, Tablet } from './styled/Media';
 
 const Container = styled.header`
   display: flex;
@@ -38,6 +39,8 @@ const Actions = styled.div`
     &:hover {
       cursor: pointer;
     }
+
+    ${focus}
   }
 `;
 
@@ -50,32 +53,97 @@ const Logo = styled(Link)`
   span {
     font-family: ${fontBold}
   }
+
+  ${focus}
 `;
 
-function Header({ history }) {
+const Pickle = styled.span`
+  top: 0;
+  transition: top .2s ease-in-out .2s, transform .2s ease-in-out 0s;
+`
+const Cheese = styled.span`
+  top: 9px;
+  transition: opacity 0s ease-in-out .4s;
+`
+
+const Patty = styled.span`
+  bottom: 0;
+  transition: bottom .2s ease-in-out .2s, transform .2s ease-in-out 0s;
+`
+
+const Hamburger = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  height: 21px;
+  width: 24px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+
+  ${Pickle}, ${Cheese}, ${Patty} {
+    left: 0;
+    background-color: ${Colours.primary};
+    height: 3px;
+    position: absolute;
+    width: 24px;
+  }
+
+  &.active {
+    ${Pickle} {
+      top: 9px;
+      transform: rotate(-45deg);
+      transition: top .2s ease-in-out 0s, transform .2s ease-in-out .2s;
+    }
+
+    ${Cheese} {
+      opacity: 0;
+      top: 9px;
+      transition: opacity 0s ease-in-out .1s;
+    }
+
+    ${Patty} {
+      bottom: 9px;
+      transform: rotate(45deg);
+      transition: bottom .2s ease-in-out 0s, transform .2s ease-in-out .2s;
+    }
+  }
+`
+function Header({ nav, history }) {
   const { user } = useStore();
   return (
     <Container>
+      <Mobile>
+        <Hamburger type="button" className={`action-nav ${nav ? 'active': ''}`} aria-label="Toggle menu">
+          <Pickle />
+          <Cheese />
+          <Patty />
+        </Hamburger>
+      </Mobile>
       <Logo to="/">
         <span>Connect</span>Ed
       </Logo>
-      <Actions>
-        {
-          userExists() ? (
-            <>
-              <button type="button" onClick={async () => history.push('/user/profile')}>Profile</button>
-              <button type="button" onClick={async () => {
-                const res = await user.logout()
-                if (res) history.replace('/')
-              }}>Logout</button>
-            </>
-          ) : (
-            <>
-              <button type="button" onClick={async () => history.push('/login')}>Login</button>
-            </>
-          )
-        }
-      </Actions>
+      <Tablet>
+        <Actions>
+          {
+            userExists() ? (
+              <>
+                <button type="button" onClick={async () => history.push('/user/profile')}>Profile</button>
+                <button type="button" onClick={async () => {
+                  const res = await user.logout()
+                  if (res) history.replace('/')
+                }}>Logout</button>
+              </>
+            ) : (
+              <>
+                <button type="button" onClick={async () => history.push('/login')}>Login</button>
+              </>
+            )
+          }
+        </Actions>
+      </Tablet>
     </Container>
   );
 }

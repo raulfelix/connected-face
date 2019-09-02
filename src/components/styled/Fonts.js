@@ -6,6 +6,11 @@ export const fontRegular = 'interregular'
 export const fontBold = 'interbold';
 export const fontMedium = 'intermedium';
 
+export const focus = `&:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px ${Colours.secondary};
+}`
+
 export const Text = styled.p`
   color: ${Colours.primary};
   font-family: ${fontMedium};

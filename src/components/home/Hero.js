@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Colours from '../styled/Colours';
 import { fontBold } from '../styled/Fonts';
 import network from '../../images/hero.svg';
-import networkSmall from '../../images/network-small-bg.svg';
+import networkSmall from '../../images/hero-sm.svg';
 import Media, { Mobile, Tablet } from '../styled/Media';
 
 const HeroContainer = styled.div`
@@ -32,8 +32,8 @@ const HeroTitle = styled.div`
 
   @media ${Media.mobile} {
     max-width: 300px;
-    left: 80px;
-    top: 40px;
+    left: 50px;
+    top: 70px;
   }
 
   h1 {

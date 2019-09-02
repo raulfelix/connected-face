@@ -64,12 +64,12 @@ const RowLevel1 = styled.div`
   animation-duration: 900ms;
   animation-timing-function: ease;
   animation-iteration-count: infinte;
-  animation-delay: 5s;
+  animation-delay: 4s;
   animation-fill-mode: forwards;
 
   .about-module {
     margin-bottom: 40px;
-    @media ${Media.small} {
+    @media ${Media.tiny} {
       padding: 0 20px;
     }
 
@@ -85,7 +85,7 @@ const RowLevel1 = styled.div`
   }
 
   @media ${Media.mobile} {
-    margin-top: -370px;
+    margin-top: -410px;
   }
 
   @keyframes in {
