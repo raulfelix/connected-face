@@ -1,4 +1,4 @@
-h1, h2, p {
+h1, h2, p, .field__error {
   font-family: Courier, monospace;
   font-size: 24px;
 }
@@ -14,6 +14,11 @@ p {
 .header {
   height: 50px;
   border-bottom: 1px solid #dddddd;
+}
+
+.page {
+  max-width: 800px;
+  margin: auto;
 }
 
 .form {
@@ -44,6 +49,11 @@ p {
     padding: 0 10px;
     width: 100%;
   }
+}
+
+.field__error {
+  color: red;
+  font-size: 12px;
 }
 
 .react-autosuggest__container {
@@ -84,3 +94,45 @@ p {
 .react-autosuggest__suggestion--highlighted {
   background-color: rgba(8, 132, 252, 0.2);
 }
+
+.react-autosuggest__cant-find {
+  color: blue;
+}
+
+
+
+@font-face {
+  font-family: 'interbold';
+  src: url('./fonts/inter-bold-webfont.woff2') format('woff2'),
+       url('./fonts/inter-bold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+// @font-face {
+//   font-family: 'intermedium';
+//   src: url('./fonts/inter-medium-webfont.woff2') format('woff2'),
+//        url('./fonts/inter-medium-webfont.woff') format('woff');
+//   font-weight: normal;
+//   font-style: normal;
+
+// }
+
+@font-face {
+  font-family: 'interregular';
+  src: url('./fonts/inter-regular-webfont.woff2') format('woff2'),
+       url('./fonts/inter-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+// @font-face {
+//   font-family: 'intersemi_bold';
+//   src: url('./fonts/inter-semibold-webfont.woff2') format('woff2'),
+//        url('./fonts/inter-semibold-webfont.woff') format('woff');
+//   font-weight: normal;
+//   font-style: normal;
+
+// }
