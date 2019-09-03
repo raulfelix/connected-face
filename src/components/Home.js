@@ -3,13 +3,13 @@ import SVG from 'react-inlinesvg';
 import styled from 'styled-components'
 import { Link, withRouter } from 'react-router-dom';
 
-import Colours from './styled/Colours';
 import { Button } from './styled/Button';
 import { fontBold, H2, Text } from './styled/Fonts';
 import { useStore } from '../AppState';
 import { userExists } from '../logic/Session';
 import Hero from './home/Hero';
 import Media from './styled/Media';
+import { Card, CardContent, CardCell } from './styled/Card';
 
 const RecentProjectsTiles = styled.div`
   display: flex;
@@ -22,40 +22,6 @@ const RecentProjects = styled.div`
   max-width: 800px;
   margin: auto;
   margin-top: 40px;
-`
-
-const Card = styled.div`
-  position: relative;
-
-  &:after {
-    content: '';
-    background-color: ${Colours.lightPink};
-    position: absolute;
-    left: 10px;
-    top: 0.5rem;
-    right: -10px;
-    bottom: -11px;
-    z-index: 1;
-  }
-`
-const CardContent = styled.div`
-  border: 4px solid ${Colours.secondary};
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1.25rem;
-  position: relative;
-  z-index: 2;
-`
-const CardCell = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-basis: 50%;
-  padding: 0.65rem;
-
-  @media ${Media.tiny} {
-    flex-basis: 100%;
-  }
 `
 
 const RowLevel1 = styled.div`
@@ -75,12 +41,6 @@ const RowLevel1 = styled.div`
 
     ${Text} {
       padding-left: 1rem;
-    }
-  }
-
-  .connect-module {
-    @media ${Media.small} {
-      padding: 0 40px;
     }
   }
 
@@ -124,7 +84,7 @@ function Home({ history }) {
               With engagement becoming an increasing challenging and teachers taking on more and more responsibility, finding ways to enrich the classroom can be time consuming and difficult. By using ConnectEd you can easily reach out into the community and seamlessly organise for people to come to school and work with you.
             </Text>
           </div>
-          <div className="col-md-7 connect-module">
+          <div className="col-md-7">
             <Card>
               <CardContent>
                 <CardCell>

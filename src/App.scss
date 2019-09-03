@@ -1,5 +1,8 @@
 @import 'grid';
 
+main {
+  overflow-x: hidden;
+}
 h2 {
   font-size: 16px;
 }
@@ -22,30 +25,6 @@ p {
   max-width: 500px;
   margin: auto;
   margin-bottom: 60px;
-}
-
-.control {
-  margin-bottom: 10px;
-  position: relative;
-
-  .control_label {
-    margin-bottom: 3px;
-  }
-  .control_field {
-    position: relative;
-  }
-  label {
-    font-family: Courier, monospace;
-  }
-
-  input, textarea {
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    font-size: 16px;
-    height: 38px;
-    padding: 0 10px;
-    width: 100%;
-  }
 }
 
 .field__error {
@@ -184,6 +163,10 @@ p {
   }
 }
 
+
+.mt-2 {
+  margin-top: 1rem !important;
+}
 
 .mb-3 {
   margin-bottom: 1.5rem !important;

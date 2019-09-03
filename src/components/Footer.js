@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withRouter, Link } from 'react-router-dom';
-import { fontRegular } from './styled/Fonts';
 import Colours from './styled/Colours';
+import { Text } from './styled/Fonts';
 
 const Container = styled.footer`
   border-top: 1px solid ${Colours.secondary};
+  color: ${Colours.primary};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,17 +25,17 @@ const Container = styled.footer`
     z-index: -1;
   }
   p {
-    font-family: ${fontRegular};
     font-size: 13px;
+    margin-bottom: 0;
   }
 `;
 
-function Footer({ history }) {
+function Footer() {
   return (
     <Container className="container-fluid">
-      <p>Built for tired teachers... by a tired teacher</p>
+      <Text>Built for tired teachers... by a tired teacher</Text>
     </Container>
   );
 }
 
-export default withRouter(Footer);
+export default Footer;
