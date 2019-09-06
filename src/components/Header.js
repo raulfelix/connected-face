@@ -7,6 +7,7 @@ import { fontRegular, fontBold, focus } from './styled/Fonts';
 import Colours from './styled/Colours';
 import Media, { Mobile, Tablet } from './styled/Media';
 import Hamburger from './navigation/Hamburger';
+import Search from './home/Search';
 
 const Container = styled.header`
   display: flex;
@@ -42,7 +43,7 @@ const Actions = styled.div`
     cursor: pointer;
     font-size: 16px;
     padding: 0 0 2px 0;
-
+    margin-left: 2rem;
     &:hover {
       cursor: pointer;
     }
@@ -64,7 +65,7 @@ const Logo = styled(Link)`
   ${focus}
 `;
 
-function Header({ nav, onNavClick, history }) {
+function Header({ nav, search, onSearchActive, onNavClick, history }) {
   const { user } = useStore();
   return (
     <Container isNavActive={nav}>
@@ -91,8 +92,12 @@ function Header({ nav, onNavClick, history }) {
               </>
             )
           }
+          <button type="button" onClick={() => onSearchActive(true)}>Search</button>
         </Actions>
       </Tablet>
+      {
+        search && <Search onDismiss={() => onSearchActive(false)} />
+      }
     </Container>
   );
 }

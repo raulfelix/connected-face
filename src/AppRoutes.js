@@ -17,15 +17,31 @@ const Profile = React.lazy(() => import('./components/profile/Profile'));
 
 const AppRoutes = () => {
   const [nav, setNav] = useState(false);
-
+  const [search, setSearch] = useState(false);
+  let s = {}
+  if (search) {
+    s ={
+      overflow: 'hidden',
+      position: 'fixed',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      top: 0
+    }
+  }
   return (
     <Router>
-      <main data-version={process.env.REACT_APP_VERSION}>
+      <main data-version={process.env.REACT_APP_VERSION} style={s}>
         <div style={{
           transition: 'all 300ms cubic-bezier(0.65, 0.05, 0.36, 1)',
           transform: `translate3d(${nav ? 'calc(100vw - 70px)' : '0'}, 0, 0)`
         }}>
-        <Header nav={nav} onNavClick={() => setNav(!nav)}/>
+        <Header
+          nav={nav}
+          search={search}
+          onSearchActive={state => setSearch(state)}
+          onNavClick={() => setNav(!nav)}
+        />
         <Mobile>
           <OffCanvasNav />
         </Mobile>

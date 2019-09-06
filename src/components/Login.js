@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as Yup from 'yup';
 import { Formik, Field } from 'formik';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { useStore } from '../AppState';
 import { Button } from './styled/Button';
 import { Card, CardContent } from './styled/Card';
@@ -68,6 +68,15 @@ const SocialButton = styled.a`
     margin-bottom: 1rem;
   }
 `
+const Register = styled(Text)`
+  color: ${Colours.primary};
+  font-size: 14px;
+  margin-top: 26px;
+  text-align: center;
+  &:visited {
+    color: ${Colours.primary};
+  }
+`
 
 function Login({ history }) {
   const { user } = useStore();
@@ -83,12 +92,14 @@ function Login({ history }) {
                 email: Yup.string().required('Please enter your email'),
                 password: Yup.string().required('Please enter your password'),
               })}
-              onSubmit={async ({email, password}) => {
-                const ok = await user.login(email, password)
-                if (ok) history.replace(user.profileRoute);
+              onSubmit={async ({ email, password }) => {
+                console.log(email)
+                if (await user.login(email, password)) {
+                  history.replace(user.profileRoute)
+                }
               }}
               render={props => (
-                <div role="form" onSubmit={props.handleSubmit}>
+                <form role="form" onSubmit={props.handleSubmit}>
                   <Field
                     label="Email"
                     name="email"
@@ -105,7 +116,8 @@ function Login({ history }) {
                 <Button type="submit" stretch variant="primary" className="mt-2">
                   Login
                 </Button>
-              </div>
+                <Register><Link to="/register/education">Create an account </Link></Register>
+              </form>
             )}
             />
           </CardContent>
