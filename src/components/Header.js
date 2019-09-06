@@ -31,26 +31,31 @@ const Actions = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  right: 1rem;
   top: 0;
   height: 60px;
 
+  ${({isPrimary = false}) => isPrimary ? `
+    left: 1rem;
+  ` : 'right: 1rem;' }
+
+  a,
   button {
     background: none;
     border: none;
     border-bottom: 3px solid ${Colours.primary};
     color: ${Colours.primary};
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1rem;
     padding: 0 0 2px 0;
     margin-left: 2rem;
+    text-decoration: none;
     &:hover {
       cursor: pointer;
     }
 
     ${focus}
   }
-`;
+`
 
 const Logo = styled(Link)`
   color: ${Colours.primary};
@@ -76,6 +81,9 @@ function Header({ nav, search, onSearchActive, onNavClick, history }) {
         <span>Connect</span>Ed
       </Logo>
       <Tablet>
+        <Actions isPrimary>
+          <Link to="/project/new">Start a project</Link>
+        </Actions>
         <Actions>
           {
             userExists() ? (

@@ -93,8 +93,10 @@ function Login({ history }) {
                 password: Yup.string().required('Please enter your password'),
               })}
               onSubmit={async ({ email, password }) => {
-                console.log(email)
-                if (await user.login(email, password)) {
+                const data = await user.login(email, password)
+                if (data.isProfileComplete) {
+                  history.replace('/')
+                } else {
                   history.replace(user.profileRoute)
                 }
               }}
