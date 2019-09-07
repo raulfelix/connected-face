@@ -1,4 +1,5 @@
 @import 'grid';
+@import 'icons';
 
 .react-autosuggest__container {
   position: relative;
@@ -9,7 +10,7 @@
   box-shadow: 0 0.25rem 5px 0 rgba(0, 0, 0, 0.2);
   left: 0;
   right: 0;
-  top: 43px;
+  top: 48px;
   max-height: 190px;
   overflow: auto;
   position: absolute;
@@ -47,6 +48,7 @@
 .react-autosuggest__suggestion {
   box-sizing: border-box;
   cursor: pointer;
+  font-family: 'intermedium';
   height: 40px;
   line-height: 40px;
   padding: 0 10px;

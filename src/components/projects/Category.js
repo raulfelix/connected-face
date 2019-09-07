@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import * as Yup from 'yup';
 import { Formik, Field } from 'formik';
@@ -6,18 +6,14 @@ import Autosuggest from './Autosuggest';
 import {getTags} from '../../requests/Tags';
 import { Button } from '../styled/Button';
 import CreateNewTag from './CreateNewTag';
+import Pill from '../styled/Pill';
 
 const TagContainer = styled.div`
-  margin: 12px;
-`
-
-const Tag = styled.span`
-  background-color: #dddddd;
-  border-radius: 30px;
-  font-size: 12px;
-  margin-right: 5px;
-  margin-bottom: 5px;
-  padding: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 10px;
+  min-height: 60px;
 `
 
 function Category({ project, onComplete }) {
@@ -36,15 +32,16 @@ function Category({ project, onComplete }) {
           <form onSubmit={props.handleSubmit}>
             {
               isCreateTag ? (
-                <CreateNewTag
-                  onComplete={() => setIsCreateTag(false)}
-                 />
+              <CreateNewTag
+                onComplete={() => setIsCreateTag(false)}
+                />
               ) : (
                 <>
                   <Field
                     label="Search for tags"
                     name="tags"
                     value=""
+                    placeholder="Type to search"
                     onSelect={item => {
                       if (item.id === -100) {
                         setIsCreateTag(true)
@@ -59,21 +56,31 @@ function Category({ project, onComplete }) {
                     fetcher={getTags}
                     lastOption={{
                       id: -100,
-                      name: "Can't find what I am looking for"
+                      name: "Can't find it?"
                     }}
+                    clearOnSelect
                     component={Autosuggest}
                   />
                   <TagContainer>
                     {
                       tags.map(tag => (
-                        <Tag key={tag.id}>{tag.name}</Tag>
+                        <Pill
+                          key={tag.id}
+                          data={tag}
+                          onDimiss={data => {
+                            const tagsCopy = tags.slice()
+                            const i = tagsCopy.findIndex(t => t.name = data.name)
+                            tagsCopy.splice(i, 1)
+                            setTags(tagsCopy)
+                          }}
+                        />
                       ))
                     }
                   </TagContainer>
                 </>
               )
             }
-            <Button type="submit" variant="primary">Save</Button>
+            <Button type="submit" variant="primary">Finish and save</Button>
           </form>
         )}
       />

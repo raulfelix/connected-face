@@ -4,27 +4,18 @@ import Autosuggest from 'react-autosuggest';
 import Colours from '../styled/Colours';
 import { focus } from '../styled/Fonts';
 
-const AppendContainer = styled.div`
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const ClearButton = styled.button`
   background-color: transparent;
   border: none;
   color: ${Colours.secondary};
-  font-size: 34px;
-  height: 24px;
-  line-height: 24px;
+  font-size: 24px;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
   margin: 0;
   padding: 0;
-  width: 24px;
+  width: 40px;
   ${focus};
 `;
 
@@ -52,7 +43,6 @@ const renderSuggestion = suggestion => {
 class SchoolAutosuggest extends React.Component {
   constructor(props) {
     super()
-    console.log(props)
     this.state = {
       value: "",
       suggestions: []
@@ -69,9 +59,7 @@ class SchoolAutosuggest extends React.Component {
   // Autosuggest will call this function every time you need to update suggestions.
   // You already implemented this logic above, so just use it.
   onSuggestionsFetchRequested = ({ value }) => {
-    console.log('onSuggestionsFetchRequested')
     this.props.fetcher(value).then(response => {
-      console.log(response)
       if (this.props.lastOption && !response.find(f => f.id == -100)) {
         response.push(this.props.lastOption)
       }
@@ -90,6 +78,7 @@ class SchoolAutosuggest extends React.Component {
 
   onSuggestionSelected = (event, { suggestion }) => {
     if (suggestion) {
+      if (this.props.clearOnSelect) this.setState({ value: ''})
       this.props.onSelect(suggestion);
     }
     event.preventDefault();
@@ -115,9 +104,13 @@ class SchoolAutosuggest extends React.Component {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps}
         />
-        <AppendContainer>
-          <ClearButton onClick={() => this.setState({value: ''})}>&times;</ClearButton>
-        </AppendContainer>
+        {
+          value.length > 0 && (
+            <ClearButton onClick={() => this.setState({value: ''})}>
+              <i className="icon-clear"></i>
+            </ClearButton>
+          )
+        }
       </div>
     )
   }
