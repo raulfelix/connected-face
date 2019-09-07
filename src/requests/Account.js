@@ -1,6 +1,10 @@
-import { get, post } from './Api';
+import { get, post, put } from './Api';
 
 class Account {
+  constructor(root) {
+    this.root = root;
+  }
+
   signup(username, email, password, type) {
     return post('/signup', {
       username,
@@ -17,16 +21,20 @@ class Account {
     });
   }
 
-  logout(id) {
-    return post('/logout', { id });
+  logout(id, token) {
+    return post('/logout', { id }, token);
   }
 
-  profile(id) {
-    return get(`/user/${id}/profile`)
+  profile() {
+    return get(`/user/profile`, this.root.token)
   }
 
-  updateProfile(profile) {
-    return post('/user/profile', profile)
+  createProfile(payload) {
+    return post('/user/profile', payload, this.root.token)
+  }
+
+  updateProfile(payload) {
+    return put('/user/profile', payload, this.root.token)
   }
 }
 

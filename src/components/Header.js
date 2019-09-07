@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { withRouter, Link } from 'react-router-dom';
 import { userExists } from '../logic/Session';
 import { useStore } from '../AppState';
-import { fontRegular, fontBold, focus } from './styled/Fonts';
+import { fontRegular, fontBold, focus, fontMedium } from './styled/Fonts';
 import Colours from './styled/Colours';
 import Media, { Mobile, Tablet } from './styled/Media';
 import Hamburger from './navigation/Hamburger';
@@ -34,10 +34,6 @@ const Actions = styled.div`
   top: 0;
   height: 60px;
 
-  ${({isPrimary = false}) => isPrimary ? `
-    left: 1rem;
-  ` : 'right: 1rem;' }
-
   a,
   button {
     background: none;
@@ -46,6 +42,7 @@ const Actions = styled.div`
     color: ${Colours.primary};
     cursor: pointer;
     font-size: 1rem;
+    font-family: ${fontMedium};
     padding: 0 0 2px 0;
     margin-left: 2rem;
     text-decoration: none;
@@ -55,6 +52,12 @@ const Actions = styled.div`
 
     ${focus}
   }
+
+  ${({isPrimary = false}) => isPrimary ? `
+    left: 1rem;
+    a { margin-left: 0; }
+  ` : 'right: 1rem;' }
+
 `
 
 const Logo = styled(Link)`

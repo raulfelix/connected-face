@@ -18,6 +18,28 @@ export const Text = styled.p`
   margin-bottom: 1rem;
 `
 
+export const HeadingLevelOne = styled.h1`
+  color: ${Colours.primary};
+  display: inline-block;
+  font-family: ${fontBold};
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1.4;
+  margin: 0 0 1rem 0;
+
+  ${({withUnderline}) => withUnderline && `
+    &:after {
+      content: '';
+      background-color: ${Colours.lightPink};
+      display: block;
+      height: 10px;
+      width: 100%;
+      margin-top: -17px;
+      margin-left: 10px;
+    }
+  `}
+`
+
 const HeadingLevelTwo = styled.h2`
   color: ${Colours.primary};
   display: inline-block;

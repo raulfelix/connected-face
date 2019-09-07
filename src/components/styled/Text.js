@@ -20,14 +20,15 @@ const ControlLabel = styled.div`
 `
 const ControlField = styled.div`
   position: relative;
-  input {
+  input,
+  textarea {
+    background-color: ${Colours.whiteSmoke};
     border-radius: 3px;
     font-family: ${fontMedium};
     font-size: 1rem;
     box-sizing: border-box;
-    border: 1px solid ${Colours.secondary};
+    border: 1px solid ${Colours.primary};
     padding: .65rem;
-    width: 100%;
     width: 100%
 
     ${focus};
@@ -54,7 +55,11 @@ export const TextInput = ({
         {required && <span className="input__required"> *</span>}
       </ControlLabel>
       <ControlField className="control_field">
-        <input id={field.name} type={type} {...field} {...props} />
+        {
+          type !== 'textarea' ? (<input id={field.name} type={type} {...field} {...props} />) : (
+            <textarea id={field.name} {...field} {...props}></textarea>
+          )
+        }
       </ControlField>
       {hasError && <ControlError>{errors[field.name]}</ControlError>}
     </Control>

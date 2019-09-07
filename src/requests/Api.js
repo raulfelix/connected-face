@@ -8,14 +8,32 @@ const instance = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-export const get = (path) =>
+export const get = (path, token) =>
   instance
-    .get(path)
+    .get(path, {
+      headers: {
+        'Authorization': 'Bearer ' + token 
+      }
+    })
     .then(response => response.data)
     .catch(error => console.error(error));
 
-export const post = (path, data) =>
+export const post = (path, data, token) =>
   instance
-    .post(`${path}`, data)
+    .post(`${path}`, data, {
+      headers: {
+        'Authorization': 'Bearer ' + token 
+      }
+    })
+    .then(response => response.data)
+    .catch(error => console.error(error));
+
+export const put = (path, data, token) =>
+  instance
+    .put(`${path}`, data, {
+      headers: {
+        'Authorization': 'Bearer ' + token 
+      }
+    })
     .then(response => response.data)
     .catch(error => console.error(error));

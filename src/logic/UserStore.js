@@ -7,14 +7,13 @@ class UserStore {
   profile;
 
   constructor(root, api) {
-    if (userExists()) {
-      const {id, type, username } = getUser();
-      this.id = id
-      this.type = type
-      this.username = username
-    }
+    this.root = root;
     this.api = api
-    console.log(this)
+
+    if (userExists()) {
+      const { token } = getUser();
+      this.root.token = token
+    }
   }
 
   get profileRoute() {
@@ -31,12 +30,21 @@ class UserStore {
     return this.id !== null;
   }
 
+  writeAuth(token) {
+    console.log('write', token)
+    setStorage({ token })
+    this.root.token = token;
+  }
+
   async login(email, password) {
     try {
-      const response = await this.api.login(email, password)
-      this.setUserDetails(response);
-      setStorage(response)
-      return true;
+      const { token, isProfileComplete } = await this.api.login(email, password)
+      this.writeAuth(token)
+      this.setUserDetails({ email });
+      return {
+        success: true,
+        isProfileComplete
+      };
     } catch (e) {
       console.error('couldnt login')
     }
@@ -45,7 +53,7 @@ class UserStore {
 
   async logout() {
     try {
-      await this.api.logout(this.id)
+      await this.api.logout(this.id, this.root.token)
       clearStorage();
       return true;
     } catch (e) {
@@ -56,8 +64,9 @@ class UserStore {
 
   async fetchProfile() {
     try {
-      const { profile } = await this.api.profile(this.id);
+      const { profile } = await this.api.profile();
       this.profile = profile;
+      this.profileComplete = profile.first_name ? true : false;
       return profile;
     } catch (e) {
       console.error(e)
@@ -65,11 +74,19 @@ class UserStore {
     }
   }
 
-  async updateProfile(profile) {
+  async createProfile(payload) {
     try {
-      profile.id = this.profile.id;
-      const ok = await this.api.updateProfile(profile);
+      const ok = await this.api.createProfile(payload);
+      this.profileComplete = true;
       return ok;
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
+  async updateProfile(payload) {
+    try {
+      return await this.api.updateProfile(payload);
     } catch (e) {
       console.error(e)
     }
