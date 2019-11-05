@@ -1,5 +1,6 @@
 @import 'grid';
 @import 'icons';
+@import 'spacing';
 
 .react-autosuggest__container {
   position: relative;
@@ -92,40 +93,45 @@
 
 // }
 
-  .fat1, .fat2,
-  .second,
-  .third,
-  .fourth,
-  .fifth,
-  .sixth,
-  .seventh,
-  .eighth,
-  .ninth,
-  .tenth {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    animation: dash 4s 1.5s linear forwards;
-  }
+  // .fat1, .fat2,
+  // .second,
+  // .third,
+  // .fourth,
+  // .fifth,
+  // .sixth,
+  // .seventh,
+  // .eighth,
+  // .ninth,
+  // .tenth {
+  //   stroke-dasharray: 1000;
+  //   stroke-dashoffset: 1000;
+  //   animation: dash 4s 1.5s linear forwards;
+  // }
 
-  .fat1 {
-    animation-delay: 3s;
-  }
-  .fat2 {
-    animation-delay: 2s;
-  }
   .sixth {
-    animation-delay: 3s;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: dash 4s 1.5s linear forwards;
   }
-
-  .seventh {
+  // .fat1 {
+  //   animation-delay: 3s;
+  // }
+  // .fat2 {
+  //   animation-delay: 2s;
+  // }
+  .sixth {
     animation-delay: 2s;
   }
+
+  // .seventh {
+  //   animation-delay: 2s;
+  // }
   
-  .tenth,
-  .third {
-    stroke-dasharray: 2000;
-    stroke-dashoffset: 2000;
-  }
+  // .tenth,
+  // .third {
+  //   stroke-dasharray: 2000;
+  //   stroke-dashoffset: 2000;
+  // }
 
   .ninth {
     stroke-dasharray: 3000;
@@ -153,4 +159,21 @@
 
 .mb-3 {
   margin-bottom: 1.5rem !important;
+}
+
+.ReactModal__Content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none !important;
+}
+.ReactModal__Content .ReactModal__Content--after-open {
+  border: none;
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  max-width: 500px;
+  margin: auto;
 }

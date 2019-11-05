@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components'
 import { useStore } from '../../AppState';
 import { Button } from '../styled/Button';
+import { TextInput } from '../styled/Text';
 
 function CreateNewTag({ onComplete }) {
   const { projectStore } = useStore();
@@ -10,19 +10,28 @@ function CreateNewTag({ onComplete }) {
   return (
     <div className="form">
       <p>Create a category for your project.</p>
-      <div className="control">
-        <div className="control_label">
-          <label>Name</label>
-        </div>
-        <div className="control_field">
-          <input type="text" value={name} onChange={e => setName(e.target.value) } />
-        </div>
-      </div>
+      <TextInput
+        form={
+          {touched: {}, errors: {}}
+        }
+        field={
+          {name: "tag"}
+        }
+        label="Add a custom tag"
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
       <Button type="button" onClick={async () => {
         await projectStore.createTag({ name })
         onComplete()
       }}>Save</Button>
-      <Button type="button" variant="link" onClick={() => onComplete()}>Cancel</Button>
+      <Button
+        type="button"
+        variant="secondary"
+        onClick={() => onComplete()}
+      >
+        Cancel
+      </Button>
     </div>
   )
 }

@@ -1,4 +1,5 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState } from 'react';
+import ReactModal from 'react-modal';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import LazyRoute from './LazyRoute';
@@ -14,6 +15,8 @@ import { Mobile } from './components/styled/Media';
 
 const Login = React.lazy(() => import('./components/Login'));
 const Profile = React.lazy(() => import('./components/profile/Profile'));
+
+ReactModal.setAppElement('#root');
 
 const AppRoutes = () => {
   const [nav, setNav] = useState(false);

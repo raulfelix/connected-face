@@ -7,7 +7,7 @@ const Container = styled.span`
   border: 2px solid ${Colours.secondary};
   border-radius: 30px;
   color: ${Colours.secondary};
-  font-size: 12px;
+  font-size: 13px;
   font-family: ${fontMedium};
   margin-right: 5px;
   margin-bottom: 5px;

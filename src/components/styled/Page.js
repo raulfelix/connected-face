@@ -10,3 +10,8 @@ export const Page = styled.div`
     padding-top: 100px;
   }
 `;
+
+export const Row = styled.div`
+  margin: auto;
+  padding: 0 1rem;
+`

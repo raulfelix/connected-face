@@ -1,5 +1,4 @@
 class ProjectStore {
-
   projects;
 
   constructor(root, api) {

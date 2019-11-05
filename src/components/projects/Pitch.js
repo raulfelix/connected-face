@@ -27,12 +27,13 @@ function Pitch({ onNext }) {
             />
             <Field
               type="textarea"
+              rows={6}
               label="Description"
               name="description"
               value={props.values.description}
               component={TextInput}
             />
-            <Button type="submit">Next</Button>
+            <Button type="submit" variant="secondary">Next</Button>
           </form>
         )}
       />

@@ -1,16 +1,14 @@
 import React from 'react';
 import './App.scss';
-import { Provider } from './AppState';
+// import { Provider } from './AppState';
 import AppRoutes from './AppRoutes';
-import RootStore from './logic/RootStore';
+// import RootStore from './logic/RootStore';
 
-const store = new RootStore();
+// const store = new RootStore();
 
 function App() {
   return (
-    <Provider store={store}>
-      <AppRoutes />
-    </Provider>
+    <AppRoutes />
   );
 }
 

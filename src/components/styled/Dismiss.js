@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Colours from './Colours';
 
-const Dismiss = styled.span`
+const Dismiss = styled.button`
   background: none;
   border: none;
   outline: none;
@@ -39,10 +39,10 @@ const Dismiss = styled.span`
   }
 `
 
-export default function() {
+export default function({onClick}) {
   return (
-    <button type="button">
-      <Dismiss />
-    </button>
+    <Dismiss type="button" onClick={onClick}>
+      <i className="icon-window-close" />
+    </Dismiss>
   )
 };

@@ -1,4 +1,4 @@
-const KEY = 'connected';
+const KEY = 'token';
 
 export function setStorage(data) {
   window.sessionStorage.setItem(KEY, JSON.stringify(data))
@@ -10,16 +10,15 @@ export function clearStorage() {
 
 function getStorage() {
   try {
-    const item = window.sessionStorage.getItem(KEY);
-    return JSON.parse(item);
+    return window.sessionStorage.getItem(KEY);
   } catch (e) {
     return false;
   }
 }
 
 export function userExists() {
-  const user = getStorage();
-  return !!user;
+  const token = getStorage();
+  return !!token;
 }
 
 export function getUser() {

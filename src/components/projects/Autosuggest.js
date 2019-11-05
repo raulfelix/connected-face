@@ -10,6 +10,7 @@ const ClearButton = styled.button`
   color: ${Colours.secondary};
   font-size: 24px;
   height: 100%;
+  line-height: 42px;
   position: absolute;
   right: 0;
   top: 0;
@@ -44,7 +45,7 @@ class SchoolAutosuggest extends React.Component {
   constructor(props) {
     super()
     this.state = {
-      value: "",
+      value: props.value ? props.value.name : '',
       suggestions: []
     }
   }

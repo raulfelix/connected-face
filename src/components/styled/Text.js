@@ -28,10 +28,14 @@ const ControlField = styled.div`
     font-size: 1rem;
     box-sizing: border-box;
     border: 1px solid ${Colours.primary};
-    padding: .65rem;
+    padding: 8px .65rem;
     width: 100%
 
     ${focus};
+
+    &:focus {
+      background-color: ${Colours.white};
+    }
   }
 `
 const ControlError = styled.div`
@@ -69,6 +73,7 @@ export const TextInput = ({
 export const TextAutosuggest = ({
   field,
   label,
+  value,
   type = 'text',
   form: { touched, errors },
   required,
@@ -77,14 +82,14 @@ export const TextAutosuggest = ({
   console.log(field)
   const hasError = touched[field.name] && errors[field.name];
   return (
-    <div className="control">
-      <div className="control_label">
+    <Control className="control">
+      <ControlLabel className="control_label">
         <label htmlFor={field.name}>{label}</label>
         {required && <span className="input__required"> *</span>}
-      </div>
-      <div className="control_field">
+      </ControlLabel>
+      <ControlField className="control_field">
         <Autosuggest
-          value=""
+          value={value}
           placeholder="Search by school name"
           onSelect={item => {field.value.school = item}}
           fetcher={props.fetcher}
@@ -92,8 +97,8 @@ export const TextAutosuggest = ({
           {...field}
           {...props}
         />
-      </div>
-      {hasError && <div className="field__error">{errors[field.name]}</div>}
-    </div>
+      </ControlField>
+      {hasError && <ControlError>{errors[field.name]}</ControlError>}
+    </Control>
   );
 };

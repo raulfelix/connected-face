@@ -10,7 +10,6 @@ export const Button = styled.button`
   font-weight: normal;
   font-family: ${fontMedium};
   letter-spacing: 0.5px;
-  min-width: 150px;
   padding: .65rem 1.25rem;
   width: auto;
 
@@ -24,20 +23,33 @@ export const Button = styled.button`
 
   ${focus};
 
-  ${({variant = ''}) => variant !== 'primary' && `
+  ${({variant = ''}) => variant === 'secondary' && `
     background-color: transparent;
     color: ${Colours.primary};
+    min-width: 150px;
   `}
 
   ${({variant = ''}) => variant === 'primary' && `
     background-color: ${Colours.primary};
     color: ${Colours.white};
+    min-width: 150px;
   `}
 
   ${({variant = ''}) => variant === 'highlight' && `
     background-color: ${Colours.secondary};
     border-color: ${Colours.secondary};
     color: ${Colours.white};
+    min-width: 150px;
+  `}
+
+  ${({variant = ''}) => variant === 'link' && `
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid ${Colours.primary};
+    border-radius: 0;
+    color: ${Colours.primary};
+    padding: 0;
+    margin: 0;
   `}
 
   ${({stretch = false}) => stretch && `

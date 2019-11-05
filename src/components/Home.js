@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import SVG from 'react-inlinesvg';
+
+import React from 'react';
 import styled from 'styled-components'
-import { Link, withRouter } from 'react-router-dom';
-
+import { withRouter } from 'react-router-dom';
 import { Button } from './styled/Button';
-import { fontBold, H2, Text } from './styled/Fonts';
-import { useStore } from '../AppState';
-import { userExists } from '../logic/Session';
-import Hero from './home/Hero';
-import Media from './styled/Media';
+import { H2, Text } from './styled/Fonts';
 import { Card, CardContent, CardCell } from './styled/Card';
-
-const RecentProjectsTiles = styled.div`
-  display: flex;
-  & > div {
-    flex: 1;
-    max-width: 33.333%;
-  }
-`
-const RecentProjects = styled.div`
-  max-width: 800px;
-  margin: auto;
-  margin-top: 40px;
-`
+import Media from './styled/Media';
+import Hero from './home/Hero';
+import RecentProjects from './home/RecentProjects';
 
 const RowLevel1 = styled.div`
   opacity: 0;
@@ -30,7 +15,7 @@ const RowLevel1 = styled.div`
   animation-duration: 900ms;
   animation-timing-function: ease;
   animation-iteration-count: infinte;
-  animation-delay: 4s;
+  animation-delay: 1.5s;
   animation-fill-mode: forwards;
 
   .about-module {
@@ -61,15 +46,6 @@ const RowLevel1 = styled.div`
 `
 
 function Home({ history }) {
-  const { projectStore } = useStore()
-  const [projects, setProjects] = useState([]);
-
-  useEffect(function() {
-    projectStore.recent().then(response => {
-      setProjects(response);
-    });
-  }, []);
-
   return (
     <>
       <Hero />
@@ -90,47 +66,19 @@ function Home({ history }) {
                 <CardCell>
                   <H2>I am an educator</H2>
                   <Text className="mb-3">Find people who can bring experiences and skills specific to your needs.</Text>
-                  <Button type="button">Find collaborators</Button>
+                  <Button type="button" variant="secondary">Find collaborators</Button>
                 </CardCell>
                 <CardCell>
                   <H2>I work in industry</H2>
                   <Text className="mb-3">Find schools and projects which you can make a positive contribution to.</Text>
-                  <Button type="button">Offer my expertise</Button>
+                  <Button type="button" variant="secondary">Offer my expertise</Button>
                 </CardCell>
               </CardContent>
             </Card>
           </div>
         </div>
       </RowLevel1>
-      {/* { 
-       !userExists() && (
-         <>
-            <p><Link to="/login">Login</Link></p>
-            <div>
-              <h3>Teacher/School</h3>
-              <p><Link to="/register/education">Sign up</Link> as a teacher or school</p>
-            </div>
-            <div>
-              <h3>Partner</h3>
-              <p><Link to="/register/partner">Sign up</Link> as a partner</p>
-            </div>
-          </>
-        ) */}
-      {/* } */}
-      {/* <RecentProjects>
-        <h2>Recent projects</h2>
-        <RecentProjectsTiles>
-          {
-            projects.map(p => (
-              <div key={p.id}>
-                <p>{p.title}</p>
-                <p>{p.description}</p>
-                <p><small>{p.name}</small></p>
-              </div>
-            ))
-          }
-        </RecentProjectsTiles>
-      </RecentProjects> */}
+      <RecentProjects />
     </>
   );
 }

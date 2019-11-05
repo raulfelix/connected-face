@@ -8,20 +8,22 @@ import { Button } from '../styled/Button';
 import CreateNewTag from './CreateNewTag';
 import Pill from '../styled/Pill';
 
+const Container = styled.div``;
 const TagContainer = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   padding-top: 10px;
   min-height: 60px;
+  margin-bottom: 40px;
 `
 
-function Category({ project, onComplete }) {
+function Category({ isLastStep, onComplete }) {
   const [tags, setTags] = useState([]);
   const [isCreateTag, setIsCreateTag] = useState(false);
 
   return (
-    <div className="form">
+    <Container>
       <Formik
         initialValues={{ tags: [] }}
         validationSchema={Yup.object().shape({
@@ -69,7 +71,7 @@ function Category({ project, onComplete }) {
                           data={tag}
                           onDimiss={data => {
                             const tagsCopy = tags.slice()
-                            const i = tagsCopy.findIndex(t => t.name = data.name)
+                            const i = tagsCopy.findIndex(t => t.id === data.id)
                             tagsCopy.splice(i, 1)
                             setTags(tagsCopy)
                           }}
@@ -80,11 +82,18 @@ function Category({ project, onComplete }) {
                 </>
               )
             }
-            <Button type="submit" variant="primary">Finish and save</Button>
+            {
+              isLastStep ? (
+                <Button type="submit" variant="primary">Finish and save</Button>
+              ) : (
+                <Button type="submit" variant="secondary">Next</Button>
+              )
+            }
+            
           </form>
         )}
       />
-    </div>
+    </Container>
   )
 }
 

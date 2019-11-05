@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import * as Yup from 'yup';
 import { Formik, Field } from 'formik';
 import { withRouter, Link } from 'react-router-dom';
-import { useStore } from '../AppState';
 import { Button } from './styled/Button';
 import { Card, CardContent } from './styled/Card';
 import { fontBold, H2, fontMedium, Text, focus } from './styled/Fonts';
@@ -11,6 +10,19 @@ import { TextInput } from './styled/Text';
 import googleIcon from '../images/google.png';
 import Colours from './styled/Colours';
 import Media from './styled/Media';
+
+import { useApolloClient, useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+
+const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      email
+      id
+      token
+    }
+  }
+`;
 
 const Container = styled.div`
   align-items: center;
@@ -79,7 +91,22 @@ const Register = styled(Text)`
 `
 
 function Login({ history }) {
-  const { user } = useStore();
+  const client = useApolloClient();
+  const [login, { loading, error }] = useMutation(
+    LOGIN_USER,
+    {
+      onCompleted({ login }) {
+        sessionStorage.setItem('token', login.token);
+        sessionStorage.setItem('email', login.email);
+        sessionStorage.setItem('id', login.id);
+        client.writeData({ data: { isLoggedIn: true, email: login.email } });
+        if (login.token) {
+          history.replace('/user/profile')
+        }
+      }
+    }
+  );
+
   return (
     <Container className="row">
       <div className="col-sm-6 col-xs-12">
@@ -93,15 +120,10 @@ function Login({ history }) {
                 password: Yup.string().required('Please enter your password'),
               })}
               onSubmit={async ({ email, password }) => {
-                const data = await user.login(email, password)
-                if (data.isProfileComplete) {
-                  history.replace('/')
-                } else {
-                  history.replace(user.profileRoute)
-                }
+                login({ variables: { email, password }})
               }}
               render={props => (
-                <form role="form" onSubmit={props.handleSubmit}>
+                <form onSubmit={props.handleSubmit}>
                   <Field
                     label="Email"
                     name="email"
@@ -115,6 +137,8 @@ function Login({ history }) {
                     value={props.values.password}
                     component={TextInput}
                   />
+                  {loading && <span>Loading...</span>}
+                  {error && <p>An error occurred</p>}
                 <Button type="submit" stretch variant="primary" className="mt-2">
                   Login
                 </Button>
